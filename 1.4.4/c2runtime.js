@@ -19846,18 +19846,12 @@ cr.plugins_.Browser = function(runtime)
 		console.log("downloading replay")
 		if (typeof a["download"] === "undefined")
 		{
-			window.open(url_);
+			console.log(url_);
 		}
 		else
 		{
 			var body = document.getElementsByTagName("body")[0];
-			a.textContent = filename_;
-			a.href = url_;
-			a["download"] = filename_;
-			body.appendChild(a);
-			var clickEvent = new MouseEvent("click");
-			a.dispatchEvent(clickEvent);
-			body.removeChild(a);
+			console.log(url_);
 		}
 	};
 	Acts.prototype.InvokeDownloadString = function (str_, mimetype_, filename_)
@@ -19873,20 +19867,12 @@ cr.plugins_.Browser = function(runtime)
 
 		if (typeof a["download"] === "undefined")
 		{
-			window.open(datauri);
+			
 			console.log("download undef")
 
 		}
 		else
 		{
-			var body = document.getElementsByTagName("body")[0];
-			a.textContent = filename_;
-			a.href = datauri;
-			a["download"] = filename_;
-			body.appendChild(a);
-			var clickEvent = new MouseEvent("click");
-			a.dispatchEvent(clickEvent);
-			body.removeChild(a);
 			console.log("download second")
 
 		}
