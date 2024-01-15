@@ -1,0 +1,16 @@
+var temp;
+
+// Add an event listener to the document for a keydown event
+document.addEventListener('keydown', function(event) {
+  // Check if the pressed key is the '<' key (key code 188) or use event.key === '<' for modern browsers
+  if (event.keyCode === 188 || event.key === '<') {
+    // Call the c2_callFunction
+    c2_callFunction("Menu > DownloadReplay", []);
+
+    // Save 'url_' to 'temp'
+    temp = url_;
+
+    // Log the value of 'temp'
+    console.log('Variable temp:', temp);
+  }
+});
