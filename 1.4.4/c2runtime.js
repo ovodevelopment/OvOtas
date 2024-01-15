@@ -2,6 +2,7 @@
 var cr = {};
 cr.plugins_ = {};
 cr.behaviors = {};
+var url_;
 if (typeof Object.getPrototypeOf !== "function")
 {
 	if (typeof "test".__proto__ === "object")
