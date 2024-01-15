@@ -1,6 +1,14 @@
 let temp;
 let old = globalThis.sdk_runtime;
-c2_callFunction("execCode", ["globalThis.sdk_runtime = this.runtime"]);
+while (true) {
+        try {
+            (c2_callFunction("execCode", ["globalThis.sdk_runtime = this.runtime"]);
+        }
+        catch (error) {
+            console.error('An error occurred:', error);
+            setTimeout(() => {}, 15);
+        }
+}
 let runtime = globalThis.sdk_runtime;
 globalThis.sdk_runtime = old;
 
