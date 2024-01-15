@@ -1,4 +1,24 @@
 let temp;
+let old = globalThis.sdk_runtime;
+c2_callFunction("execCode", ["globalThis.sdk_runtime = this.runtime"]);
+let runtime = globalThis.sdk_runtime;
+globalThis.sdk_runtime = old;
+
+
+let getPlayer = () => {
+        return runtime.types_by_index
+            .filter(
+                (x) =>
+                !!x.animations &&
+                x.animations[0].frames[0].texture_file.includes("collider")
+            )[0]
+            .instances.filter(
+                (x) => x.instance_vars[17] === "" && x.behavior_insts[0].enabled
+            )[0];
+    }
+
+
+
 
 // Add an event listener to the document for a keydown event
 document.addEventListener('keydown', (event) => {
@@ -8,8 +28,19 @@ document.addEventListener('keydown', (event) => {
     c2_callFunction('Menu > DownloadReplay', []);
 
     // Save 'url_' to 'temp'
-    temp = url_;
+    if (temp === null) {
+      temp = url_;
+    }
+    else {
 
+        console.log("DO LATER");
+
+
+
+
+
+
+    }
     // Log the value of 'temp'
     console.log('Variable temp:', temp);
 
@@ -17,7 +48,7 @@ document.addEventListener('keydown', (event) => {
     const compressedArray = new Uint8Array(temp);
 
     // Decompress the data using lzma
-    lzma.decompress(compressedArray, (result, error) => {
+    LZMA_WORKER.decompress(compressedArray, (result, error) => {
       if (error) {
         console.error('Error decompressing data:', error);
       } else {
@@ -26,5 +57,10 @@ document.addEventListener('keydown', (event) => {
         console.log('Decrypted Data:', decryptedData);
       }
     });
-  }
+
+    else if(event.keyCode === 82 || event.key === 'r') {
+      temp = null;
+      //reset temp
+    
+    }
 });
